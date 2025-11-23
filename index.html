@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infografía — Uso adecuado de dispositivos tecnológicos</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <nav class="nav">
+    <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+    <label for="nav-toggle" class="nav-btn">☰ Menú</label>
+
+    <ul class="nav-menu">
+      <li><a href="#intro">Introducción</a></li>
+      <li><a href="#effects">Efectos</a></li>
+      <li><a href="#devices">Dispositivos</a></li>
+      <li><a href="#commit">Compromiso</a></li>
+      <li><a href="#sources">Fuentes</a></li>
+    </ul>
+  </nav>
+
+  <main class="infografia">
+
+    <header class="hero">
+      <div class="brand">
+        <div>
+          <h1>Recomendaciones para el uso adecuado de dispositivos tecnológicos</h1>
+          <p class="subtitle">Basado en evidencia — códigos: <strong>CPC_265 A, CPC_265 C, CPC_265 D</strong></p>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel intro" id="intro">
+      <div class="col media">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=60&auto=format&fit=crop" alt="Tecnología">
+      </div>
+      <div class="col text">
+        <h2>¿Por qué importa?</h2>
+        <p>Los dispositivos con pantalla son herramientas poderosas para la educación y el trabajo, pero su uso excesivo o inadecuado produce efectos sobre la salud física, mental y social. Esta infografía resume riesgos, propuestas de regulación y un compromiso personal práctico.</p>
+      </div>
+    </section>
+
+    <section class="panel effects" id="effects">
+      <h2>1 Efectos que pueden generar los dispositivos con pantalla</h2>
+      <div class="grid">
+        <article class="card"><h3>1. Fatiga visual digital</h3><p>Ojos secos, visión borrosa, irritación y dificultad para enfocar.</p></article>
+        <article class="card"><h3>2. Alteraciones del sueño</h3><p>La luz azul retrasa la melatonina y afecta el descanso.</p></article>
+        <article class="card"><h3>3. Dolor musculoesquelético</h3><p>Tensión en cuello, hombros y espalda.</p></article>
+        <article class="card"><h3>4. Problemas de salud mental</h3><p>Ansiedad, estrés y comparación social.</p></article>
+        <article class="card"><h3>5. Déficit de atención</h3><p>Distracciones y menor concentración.</p></article>
+        <article class="card"><h3>6. Sedentarismo</h3><p>Mayor tiempo sentado y riesgo metabólico.</p></article>
+        <article class="card"><h3>7. Riesgo auditivo</h3><p>Volumen alto en audífonos puede causar daño.</p></article>
+      </div>
+    </section>
+
+    <section class="panel devices" id="devices">
+      <h2>2 Dispositivos que requieren regulación</h2>
+      <p class="lead">Guías proporcionales y educativas según tipo de dispositivo.</p>
+
+      <ul class="device-list">
+        <li><strong>1. Smartphones</strong> — notificaciones, uso nocturno, distracción.</li>
+        <li><strong>2. Tablets</strong> — supervisión infantil y contenido educativo.</li>
+        <li><strong>3. Computadores</strong> — ergonomía y pausas obligatorias.</li>
+        <li><strong>4. Consolas</strong> — sesiones largas afectan conducta y sueño.</li>
+        <li><strong>5. Televisores</strong> — tiempo pasivo prolongado.</li>
+        <li><strong>6. Auriculares</strong> — peligro de pérdida auditiva.</li>
+        <li><strong>7. Smartwatches</strong> — interrupciones constantes.</li>
+      </ul>
+    </section>
+
+    <section class="panel commit" id="commit">
+      <h2>3 ¿Cuál sería tu compromiso?</h2>
+      <p class="lead">Escribe un compromiso personal respecto al uso responsable.</p>
+
+      <div class="commit-area">
+        <label for="miCompromiso" class="sr-only">Mi compromiso</label>
+        <textarea id="miCompromiso" placeholder="Ej: Limitaré el uso del smartphone a 90 min al día..."></textarea>
+
+        <div class="buttons">
+          <button id="copiarBtn">📋 Copiar</button>
+          <button id="guardarBtn">💾 Guardar</button>
+        </div>
+
+        <p id="msg" class="msg"></p>
+      </div>
+    </section>
+
+    <section class="panel sources" id="sources">
+      <h2>Fuentes</h2>
+      <ul>
+        <li>NYT, Infobae, MiWebDeSalud + OMS.</li>
+        <li>Códigos CPC_265 A, C, D.</li>
+      </ul>
+    </section>
+
+    <footer class="panel footer">
+      <p>Infografía educativa · Diseñado por <strong>Levin Arévalo</strong> · 2025</p>
+    </footer>
+
+  </main>
+
+  <script>
+    const copiarBtn = document.getElementById('copiarBtn');
+    const guardarBtn = document.getElementById('guardarBtn');
+    const miComp = document.getElementById('miCompromiso');
+    const msg = document.getElementById('msg');
+
+    copiarBtn.addEventListener('click', () => {
+      const t = miComp.value.trim();
+      if (!t) { alert('Escribe tu compromiso antes de copiar.'); return; }
+      navigator.clipboard.writeText(t);
+      msg.textContent = '✅ Copiado';
+      setTimeout(()=> msg.textContent = '', 2000);
+    });
+
+    guardarBtn.addEventListener('click', () => {
+      const t = miComp.value.trim();
+      if (!t) { alert('Escribe tu compromiso antes de guardar.'); return; }
+      localStorage.setItem('compromiso_usuario', t);
+      msg.textContent = '💾 Guardado';
+      setTimeout(()=> msg.textContent = '', 2000);
+    });
+
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem('compromiso_usuario');
+      if (saved) miComp.value = saved;
+    });
+  </script>
+</body>
+</html>
